@@ -23,6 +23,13 @@
                 <?php
                     include 'includes/menu.php';
                 ?>
+            </div>
+            <div class="col-md-10" style="padding-top: 50px;">
+                <!--Conteúdo-->
+                <h2>Página Inicial</h2>
+                <?php 
+                    include 'includes/busca.php';
+                ?>
 
                 <?php 
                     require_once 'includes/funcoes.php';
@@ -55,7 +62,9 @@
                             'titulo',
                             'data_postagem',
                             'id',
-                            '(select nome from usuario where usuario.id = post.usuario_id) as nome'
+                            '(select nome 
+                                from usuario 
+                                where usuario.id = post.usuario_id) as nome' 
                         ],
                         $criterio,
                         'data_postagem DESC'
@@ -64,7 +73,7 @@
                 <div>
                     <div class="list-group">
                         <?php
-                            foreach($posts as $post) :
+                            foreach($posts as $post):
                                 $data = date_create($post['data_postagem']);
                                 $data = date_format($data, 'd/m/Y H:i:s');  
                         ?>
@@ -72,7 +81,7 @@
                             href="post_detalhe.php?post=<?php echo $post['id'] ?>">
                             <strong><?php echo $post['titulo']?></strong>
                             [<?php echo $post ['nome']?>]
-                            <span class ="badge badge-dark"><?php echo $data?></span>
+                            <span class ="badge badge-dark"><?php echo $data ?></span>
                         </a>
                          <?php endforeach; ?>
                     </div>

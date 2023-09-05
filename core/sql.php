@@ -54,7 +54,7 @@ function select(string $entidade, array $campos, array $criterio = [], string $o
     $instrucao .= " FROM {$entidade}";
 
     if(!empty($criterio)){
-        $instrucao .= ' WHERE ';
+        $instrucao .= ' WHERE';
 
         foreach($criterio as $expressao){
             $instrucao .= ' ' . implode(' ', $expressao);
@@ -62,7 +62,7 @@ function select(string $entidade, array $campos, array $criterio = [], string $o
     }
 
     if(!empty($ordem)){
-        $instrucao .= "ORDER BY $ordem ";
+        $instrucao .= " ORDER BY $ordem ";
     }
 
     return $instrucao;

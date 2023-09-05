@@ -132,7 +132,7 @@ string $ordem = null) : array
     foreach ($criterio as $expressao) {
         $dado = $expressao[count($expressao) -1];
 
-        $tipo[] = gettype($dado) [0];
+        $tipo[] = gettype($dado)[0];
         $expressao[count($expressao) - 1] = '?';
         $coringa_criterio[] = $expressao;
 
@@ -151,7 +151,7 @@ string $ordem = null) : array
     $stmt = mysqli_prepare($conexao, $instrucao);
 
     if(isset($tipo)){
-        $comando = 'mysqli_stmt_bind_param($stmt, ';
+        $comando = 'mysqli_stmt_bind_param($stmt,';
         $comando .= "'" . implode('', $tipo). "'";
         $comando .= ', $' . implode(', $', $campos_criterio);
         $comando .= ');';
