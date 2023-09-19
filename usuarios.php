@@ -13,7 +13,7 @@
             <div class="col-md-12">
                 <?php
                     include 'includes/topo.php';
-                    include 'includes/ valida_login.php';
+                    include 'includes/valida_login.php';
                     if($_SESSION['login']['usuario']['adm'] == 1){
                         header('Location: index.php');
                     }

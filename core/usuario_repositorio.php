@@ -6,21 +6,23 @@
     require_once 'mysql.php';
     $salt = '$exemplosaltifsp';
 
-    foreach($_post as $indice => $dado){
+    foreach($_POST as $indice => $dado){
         $$indice = limparDados($dado);
     }
 
-    foreach($_get as $indice => $dado){
+    foreach($_GET as $indice => $dado){
         $$indice = limparDados($dado);
     }
 
     switch($acao){
         case 'insert':
-            $dado =[
+            $dados =[
                 'nome' => $nome,
                 'email' => $email,
                 'senha' => crypt($senha,$salt)
             ];
+
+           
 
             insere(
                 'usuario',
@@ -37,7 +39,7 @@
             ];
 
             $criterio = [
-                ['id', '_', $id]
+                ['id', '=', $id]
             ];
 
             break;
