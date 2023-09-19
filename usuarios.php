@@ -73,19 +73,29 @@
                             $data = date_create($entidade['data_criacao']);
                             $data = date_format($data, 'd/m/Y H:i:s');
                     ?>
-                    <tr>
-                        <td><?php echo $entidade['nome'] ?></td>
-                        <td><?php echo $entidade['email'] ?></td>
-                        <td><?php echo $data ?></td>
-                        <td><a href='core/usuario_repositorio.php?acao=status&id=<?php echo $entidade['id']?>
-                        &valor=<?php echo ($entidade['ativo'] == 1) ? 'desativar' : 'Ativar'; ?>"></a></td>
-                        <td><a href="core/usuario_repositorio.php?acao=adm&id =<?php echo $entidade['id']?>
-                        &valor=<?php echo !$entidade ['adm']?><?php echo ($entidade['adm']==1) ? 'Rebaixar' : 'Promover'; ?></a></td>
-                    </tr>
+                   <tr>
+                        <td><?php echo $entidade['nome']?></td>
+                        <td><?php echo $entidade['email']?></td>
+                        <td><?php echo $data?></td>
+                        <td><a href='core/usuario_repositorio.php?acao=status&id=<?php echo $entidade['id']?>></a>
+                        &valor=<?php echo !$entidade['ativo']?>'><?php echo ($entidade['ativo']==1) ? 
+                        'desativar': 'ativar'; ?> '</a></td>
+                        <td><a href='core/usuario_repositorio.php?acao=adm&id=<?php echo $entidade['id ']?> 
+                        &valor=<?php echo !$entidade['adm']?> '> <?php echo ($entidade['adm']==1) ? 'Rebaixar'
+                        : 'Promover'; ?>></a></td>
+                   </tr>
                     <?php endforeach; ?>
                 </tbody>
             </table>
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-12">
+            <?php 
+                include 'includes/rodape.php';
+            ?>
+        </div>
+    </div>
+    <script src="lib/bootstrap-4.2.1-dist/js/bootstrap.min.js"></script>
 </body>
 </html>
