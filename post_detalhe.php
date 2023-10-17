@@ -62,12 +62,10 @@
             </div>
         </div>
         <div class="row">
-            <div class="row">
-                <div class="col-md-12">
-                    <?php
-                        include 'includes/rodape.php'; 
-                    ?>
-                </div>
+            <div class="col-md-12">
+                <?php
+                    include 'includes/rodape.php'; 
+                ?>
             </div>
         </div>
     </div>

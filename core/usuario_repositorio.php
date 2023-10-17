@@ -4,7 +4,7 @@
     require_once 'conexao_mysql.php';
     require_once 'sql.php';
     require_once 'mysql.php';
-    $salt = '$exemplosaltifsp';
+    $salt = 'exemplosaltifsp';
 
     foreach($_POST as $indice => $dado){
         $$indice = limparDados($dado);
@@ -16,7 +16,7 @@
 
     switch($acao){
         case 'insert':
-            $dados =[
+            $dados =    [
                 'nome' => $nome,
                 'email' => $email,
                 'senha' => crypt($senha,$salt)
@@ -52,7 +52,7 @@
 
             break;
 
-        case 'login' :
+        case 'login':
             $criterio = [
                 ['email', '=', $email],
                 ['AND', 'ativo', '=', 1]
@@ -76,6 +76,7 @@
             }
 
             break;
+
         case 'logout':
             session_destroy();
             break;
@@ -98,7 +99,7 @@
                 $criterio
             );
 
-            header('Location: ../usuario.php');
+            header('Location: ../usuarios.php');
             exit;
             break;
 

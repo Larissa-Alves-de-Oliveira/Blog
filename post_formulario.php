@@ -49,7 +49,8 @@
                 ?>
                 <h2>Post</h2>
                 <form action="core/post_repositorio.php" method="post">
-                    <input type="hidden" name="acao" value="<?php echo $entidade['id'] ?? '' ?>">
+                    <input type="hidden" name="acao" value="<?php echo empty($id) ? 'insert' : 'update' ?>">
+                    <input type="hidden" name="id" value="<?php echo $entidade['id'] ?? '' ?>">
                     <div class="form-group">
                         <label for="titulo">Título</label>
                         <input class="form-control" type="text"  require="required" 
@@ -58,16 +59,16 @@
                     <div class="form-group">
                         <label for="texto">Texto</label>
                         <textarea class="form-control" require="required" name="texto" id="texto" rows="5">
-                            <?php echo $entidade ['texto'] ?? '' ?>
+                            <?php echo $entidade['texto'] ?? '' ?>
                         </textarea>
                     </div>
                     <div class="form-group">
                         <label for="texto">Postar em</label>
                         <?php 
                             $data = (!empty($entidade['data_postagem'])) ?
-                            explode ('', $entidade['data_postagem']) [0] : '';
+                            explode (' ', $entidade['data_postagem']) [0] : '';
                             $hora = (!empty($entidade['data_postagem'])) ?
-                            explode ('', $entidade['data_postagem']) [1] : '';
+                            explode (' ', $entidade['data_postagem']) [1] : '';
                         ?>
                         <div class="row">
                             <div class="col-md-3">

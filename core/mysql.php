@@ -31,20 +31,20 @@ function atualiza(string $entidade, array $dados, array $criterio = []) : bool
 
     foreach ($dados as $campo => $dado){
         $coringa_dados[$campo] = '?';
-        $tipo[] = gettype($dado) [0];
+        $tipo[] = gettype($dado)[0];
         $$campo = $dado;
     }
 
     foreach ($criterio as $expressao){
         $dado = $expressao[count($expressao) - 1];
 
-        $tipo[] = gettype($dado) [0];
+        $tipo[] = gettype($dado)[0];
         $expressao[count($expressao) - 1] = '?';
         $coringa_criterio[] = $expressao;
 
         $nome_campo = (count($expressao) < 4) ? $expressao[0] : $expressao[1];
 
-        if(isset($nome_completo)){
+        if(isset($nome_campo)){
             $nome_campo = $nome_campo . '_' . rand();
         }
 
@@ -59,8 +59,8 @@ function atualiza(string $entidade, array $dados, array $criterio = []) : bool
     $stmt = mysqli_prepare($conexao, $instrucao);
 
     if(isset($tipo)){
-        $comando = 'mysqli_stmt_bind_param($stmt, ';
-        $comando .= "'" .  implode('', $tipo). "'";
+        $comando = 'mysqli_stmt_bind_param($stmt,';
+        $comando .= "'" .  implode('', $tipo) . "'";
         $comando .= ', $' . implode(', $', array_keys($dados));
         $comando .= ', $' . implode(', $', $campos_criterio);
         $comando .= ');';
@@ -97,7 +97,7 @@ function deleta(string $entidade, array $criterio = []) : bool
 
     $instrucao = delete($entidade, $coringa_criterio);
 
-    $conexao = conecta ();
+    $conexao = conecta();
 
     $stmt = mysqli_prepare($conexao, $instrucao);
 
@@ -105,7 +105,7 @@ function deleta(string $entidade, array $criterio = []) : bool
         $comando = 'mysqli_stmt_bind_param($stmt,';
         $comando .= "'" . implode('', $tipo). "'";
         $comando .= ', $' . implode(', $', $campos_criterio);
-        $comando.= ') ;';
+        $comando.= ');';
 
         eval($comando);
     }

@@ -17,7 +17,7 @@ function update(string $entidade, array $dados, array $criterio = []) : string
     $instrucao = "UPDATE {$entidade}"; //Função Update
 
     foreach($dados as $campo => $dado){
-        $set [] = " {$campo} = {$dado}";
+        $set[] = "{$campo} = {$dado}";
     }
 
     $instrucao .= ' SET ' . implode(', ', $set);

@@ -26,7 +26,7 @@
                     require_once 'core/mysql.php';
 
                     if(isset($_SESSION['login'])){
-                        $id = (int) $_SESSION ['login']['usuario']['id'];
+                        $id = (int) $_SESSION['login']['usuario']['id'];
 
                         $criterio = [
                             ['id', '=', $id]
@@ -41,36 +41,33 @@
                         $entidade = $retorno[0];
                     }
                 ?>
+                <h2>Usuário</h2>
+                    <form action="core/usuario_repositorio.php" method="post">
+                        <input type="hidden" name="acao"
+                        value="<?php echo empty($id) ? 'insert' : 'update' ?>">
+                        <input type="hidden" name="id" value="<?php echo $entidade['id'] ?? '' ?>">
+                        <div class="form-group">
+                            <label for="nome">Nome</label>
+                            <input class="form-control" type="text" require="required" id="nome" 
+                            name="nome" value="<?php echo $entidade['nome'] ?? '' ?>">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">E-mail</label>
+                            <input class="form-control" type="text" name="email" id="email" 
+                            require="required" value="<?php echo $entidade['email'] ?? '' ?>">
+                        </div>
+                        <?php if(!isset($_SESSION['login'])) : ?>
+                        <div class="form-group">
+                            <label for="senha">Senha</label>
+                            <input class="form-control" type="password" require="required"
+                            id="senha" name="senha">
+                        </div> 
+                        <?php endif; ?>
+                        <div class="text-right">
+                            <button class="btn btn-success" type="submit">Salvar</button>
+                        </div>
+                    </form>
             </div>
-        </div>
-        <h2>Usuário</h2>
-        <div class="row">
-            
-            <form action="core/usuario_repositorio.php" method="post">
-                <input type="hidden" name="acao" 
-                value="<?php echo empty($id) ? 'insert' : 'update' ?>">
-                <input type="hidden" name="id" value="<?php echo $entidade['id'] ?? '' ?>">
-                <div class="form-group">
-                    <label for="nome">Nome:</label>
-                    <input class="form-control" type="text" required id="nome" 
-                    name="nome" value="<?php echo $entidade['nome'] ?? '' ?>">
-                </div>
-                <div class="form-group">
-                    <label for="email">E-mail</label>
-                    <input class="form-control" type="text" name="email" id="email" 
-                    required value="<?php echo $entidade['email'] ?? '' ?>">
-                </div>
-                <?php if(!isset($_SESSION['login'])) : ?>
-                <div class="form-group">
-                    <label for="senha">Senha:</label>
-                    <input class="form-control" type="password" required
-                    id="senha" name="senha">
-                </div>
-                <?php endif; ?>
-                <div class="text-right">
-                    <button class="btn btn-success" type="submit">Salvar</button>
-                </div>
-            </form>
         </div>
         <div class="row">
             <div class="col-md-12">
