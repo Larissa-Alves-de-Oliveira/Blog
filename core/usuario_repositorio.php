@@ -42,8 +42,6 @@
                 ['id', '=', $id]
             ];
 
-            break;
-
             atualiza(
                 'usuario',
                 $dados,
