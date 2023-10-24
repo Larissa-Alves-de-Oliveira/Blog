@@ -20,6 +20,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="usuarios.php">Usuários</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="https://bri.ifsp.edu.br/">IFSP</a>
+            </li>
             <?php endif; ?>
         </ul>
     </div>
